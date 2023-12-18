@@ -15,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
 });
+
+Route::get('/konfirmasi-reservasi', [adminController::class, 'konfirmasi_reservasi'])->middleware('auth:admin');
+Route::get('/konfirmasi-reservasi/{id}', [adminController::class, 'detail_reservasi'])->middleware('auth:admin');
+Route::put('/konfirmasi-reservasi/{id}', [adminController::class, 'confirm_reservation'])->middleware('auth:admin');
