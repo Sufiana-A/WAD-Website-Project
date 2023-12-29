@@ -124,4 +124,52 @@
               </div>
             @endforeach
             </div>
+            <!-- completed -->
+            <div class="tab-pane fade" id="completed">
+            @foreach($reservasi_complete as $rc)
+              <div class="card mt-3 mb-4">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img class="card-img-top" src="{{url('asset/front-end/image/traveling.png')}}" alt="Card image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">Pemesanan {{$rc -> layanan}} - {{$rc  -> booking_code}}</h3>
+                            <ul class="card-text no-bullet fs-5">
+                                <li>Destinasi: {{$rc -> destinasi_hotel}}</li>
+                                <li>Tanggal keberangkatan / checkin: {{ date('d F Y', strtotime($rc->keberangkatan_checkin)) }}</li>
+                                <li>Tanggal kepulangan / checkout: {{ date('d F Y', strtotime($rc->kepulangan_checkout)) }}</li>
+                            </ul>
+                            <p class="text-danger">Silahkan lihat tiket untuk mengecek status pembayaran.</p>
+                            <a href="/tiket/{{$rc -> id}}" class="btn btn-success">tiket pemesanan</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal3">Batalkan pesanan</button>
+                        </div>
+                    </div>
+                </div>
+                <form action="/batal-pembayaran/{{$pk -> id}}" method="post">
+                @csrf
+                @method('delete')
+                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Batalkan pesanan</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Yakin ingin membatalkan pesanan ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Batalkan</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+              </div>
+            @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
