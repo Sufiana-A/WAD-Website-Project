@@ -15,7 +15,7 @@
                                 <h5 class="card-text mb-5">Silakan lakukan pembayaran melalui QRIS dan unggah bukti pembayaran Anda.</h5>
                             </div>
                             <div class="col-md-6">
-                                <img src="{{url('asset/front-end/image/QR.jpeg')}}" alt="" class="rounded float-end img-thumbnail" width="200px" height="200px">
+                                <img src="{{url('asset/front-end/image/QRIS Windira.jpg')}}" alt="" class="rounded float-end img-thumbnail" width="200px" height="200px">
                             </div>
                         </div>
                     </div>
