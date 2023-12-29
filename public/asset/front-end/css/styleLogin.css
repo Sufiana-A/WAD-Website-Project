@@ -1,0 +1,11 @@
+body {
+    background-color: #f5f5dc; /* cream color */
+}
+.logo-space {
+    height: 100px; /* space for logo */
+    background-color: white;
+}
+.login-container {
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* make it look raised */
+}

@@ -1,0 +1,48 @@
+body {
+    background-color: #f5f5dc; /* cream color */
+}
+.logo-space {
+    height: 100px; /* space for logo */
+    background-color: white;
+}
+.register-container {
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* make it look raised */
+}
+
+.form-control {
+    background-color: rgb(243, 242, 242);
+    outline-color: invert;
+}
+
+.form-group {
+    font-weight: 600;
+}
+.input-box {
+    background: #f0f0f0;
+    height: 50%;
+    width: 90%;
+    max-height: 100px;
+    max-width: 400px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.img{
+    position: absolute;
+    top: -70px;
+    left: 80px;
+}
+
+.input-box img {
+    width: 35px;
+    cursor: pointer;
+}
+
+.button{
+    display: flex;
+}
+

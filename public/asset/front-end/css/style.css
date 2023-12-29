@@ -1,0 +1,85 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.textService {
+    color: white; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.footer-bg {
+    background-color: rgb(239, 221, 195);
+}
+    
+.footer-icon {
+    font-size: 24px;
+    color: black; 
+  }
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-block {
+    display: flex;
+    justify-content: center;
+}
+
+.img-profile{
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px;
+}
+
+.btn-3d {
+    box-shadow: 0 5px 0 powderblue;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-3d:active {
+    box-shadow: 0 2px 0 powderblue;
+    transform: translateY(3px);
+}
+
+.instagram-txt {
+    font-size: 19px;
+}
+
+.about-text {
+    text-align: justify;
+}
+
+.dropdown-item:hover {
+    background-color:  #f5f5dc !important;
+}
+
+.dropdown-divider:hover {
+    background-color:  #f5f5dc !important;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #28a745;
+    color: white;
+}
+
+.no-bullet {
+    list-style-type: none;
+}
+
+.ongoing-tab {
+    background-color:  #f5f5dc;
+}
+
+.col-form-label {
+    color: black;
+    font-weight: bold;
+}
+
+.btn-pesan {
+    background-color: #007A01;
+    color: #FFFFFF;
+}
