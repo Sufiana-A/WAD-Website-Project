@@ -141,7 +141,47 @@ class userController extends Controller
     }
     
     //nampilin profile dlm pages
-    
+    public function profile(){
+        return view('pages.profile');
+    }
     //edit profile user
-    
+    public function editProfile(Request $request)
+    {
+        $request->validate([
+            'password' => 'nullable|confirmed|min:6',
+        ]);
+
+        $editProfile = User::find(Auth::user()->id);
+
+        // Update hanya jika ada input password
+        if ($request->filled('password')) {
+            $editProfile->update([
+                'nama_lengkap' => $request->nama_lengkap,
+                'email' => $request->email,
+                'nik' => $request->nik,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'alamat' => $request->alamat,
+                'password' => Hash::make($request->password),
+            ]);
+        } else {
+            // Jika password tidak diisi, hanya update name dan email
+            $editProfile->update([
+                'nama_lengkap' => $request->nama_lengkap,
+                'email' => $request->email,
+                'nik' => $request->nik,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'alamat' => $request->alamat,
+            ]);
+        }
+
+        if ($editProfile) {
+            Session::flash('status', 'success');
+            Session::flash('message', 'Profile berhasil diperbarui');
+            return redirect('/profile');
+        } else {
+            Session::flash('status', 'failed');
+            Session::flash('message', 'Profile gagal diperbarui');
+            return redirect('/profile');
+        }
+    }
 }
