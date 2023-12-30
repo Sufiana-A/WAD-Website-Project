@@ -74,9 +74,31 @@ class userController extends Controller
     }
     
     //nampilin reservasi-kereta dlm pages
-    
+    public function reservasi_kereta(){
+        return view('pages.reservasi-kereta');
+    }
     //ngambil isian form ke db buat reservasi kereta
-    
+    public function train_reservations(Request $request){
+        $train_reservations = Reservation::create([
+            'nama_lengkap' => $request->nama_lengkap,
+            'email' => $request->email,
+            'layanan' => $request->layanan,
+            'keberangkatan' => $request->keberangkatan,
+            'destinasi_hotel' => $request->destinasi_hotel,
+            'keberangkatan_checkin' => $request->keberangkatan_checkin,
+            'kepulangan_checkout' => $request->kepulangan_checkout,
+            'quantity' => $request->quantity,
+            'booking_code' => 0000,
+            'duduk_kamar' => '',
+            'biaya' => null,
+            'status' => 'menunggu konfirmasi admin'
+        ]);
+        if($train_reservations){
+            Session::flash('status', 'success');
+            Session::flash('message', 'reservasi kamu berhasil ditambahkan, mohon menunggu konfirmasi dari admin');
+            return redirect('/my-order');
+        } 
+    }
     //nampilin reservasi-hotel dlm pages
     public function reservasi_hotel(){
         return view('pages.reservasi-hotel');
