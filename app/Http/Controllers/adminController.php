@@ -63,10 +63,45 @@ class adminController extends Controller
     //update status pembayaran
     
     //lihat data user
-    
+    public function dataUser(){
+        $dataUser = User::all();
+        return view('pages.admin.dataUser', compact(['dataUser']));
+    }
     //hapus user
-    
+    public function deleteUser($id){
+        $deleteUser = User::find($id);
+        $deleteUser->delete();
+        if($deleteUser){
+            Session::flash('status', 'success');
+            Session::flash('message', 'Data user berhasil dihapus');
+            return redirect('/data-user');
+        } else{
+            Session::flash('status', 'failed');
+            Session::flash('message', 'Data user gagal dihapus');
+            return redirect('/data-user');
+        }
+    }
     //edit user
-    
-    
+    public function editUser($id){
+        $editUser = User::find($id);
+        return view('pages.admin.editUser', compact(['editUser']));
+    }
+    public function updateUser(Request $request, $id)
+    {
+        $editProfile = User::find($id);
+        $editProfile->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'email' => $request->email,
+            'nik' => $request->nik,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin
+            
+        ]);
+        if ($editProfile) {
+            return redirect()->back()->with('success', 'Data user berhasil diperbarui.');
+        } else {
+            return redirect()->back()->with('error', 'Data user gagal diperbarui.');
+        }
+    }
 }
