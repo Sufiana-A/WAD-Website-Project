@@ -139,7 +139,6 @@ class userController extends Controller
             return redirect('/my-order');
         }
     }
-    //fitur batalin pembayaran
     
     //nampilin profile dlm pages
     
