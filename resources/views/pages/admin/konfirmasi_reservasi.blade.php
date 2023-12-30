@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <h3 class="card-title">pemesanan {{$pr -> layanan}} - {{$pr -> booking_code}}</h3>
                             <ul class="card-text no-bullet fs-5">
-                                <li>Destinasi: {{$pr -> keberangkatan}}</li>
+                                <li>Destinasi: {{$pr -> destinasi_hotel}}</li>
                                 <li>Tanggal keberangkatan / checkin: {{ date('d F Y', strtotime($pr->keberangkatan_checkin)) }}</li>
                                 <li>Tanggal kepulangan / checkout: {{ date('d F Y', strtotime($pr->kepulangan_checkout)) }}</li>
                             </ul>
