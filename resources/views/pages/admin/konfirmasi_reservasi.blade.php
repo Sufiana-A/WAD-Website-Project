@@ -58,7 +58,7 @@
                         <div class="card-body">
                             <h3 class="card-title">pemesanan {{$rb -> layanan}} - {{$rb -> booking_code}}</h3>
                             <ul class="card-text no-bullet fs-5">
-                                <li>Destinasi: {{$rb -> keberangkatan}}</li>
+                                <li>Destinasi: {{$rb -> destinasi_hotel}}</li>
                                 <li>Tanggal keberangkatan / checkin: {{ date('d F Y', strtotime($rb->keberangkatan_checkin)) }}</li>
                                 <li>Tanggal kepulangan / checkout: {{ date('d F Y', strtotime($rb->kepulangan_checkout)) }}</li>
                             </ul>
@@ -82,7 +82,7 @@
                         <div class="card-body">
                             <h3 class="card-title">Pemesanan {{$rc -> layanan}} - {{$rc  -> booking_code}}</h3>
                             <ul class="card-text no-bullet fs-5">
-                                <li>Destinasi: {{$rc -> keberangkatan}}</li>
+                                <li>Destinasi: {{$rc -> destinasi_hotel}}</li>
                                 <li>Tanggal keberangkatan / checkin: {{ date('d F Y', strtotime($rc->keberangkatan_checkin)) }}</li>
                                 <li>Tanggal kepulangan / checkout: {{ date('d F Y', strtotime($rc->kepulangan_checkout)) }}</li>
                             </ul>
