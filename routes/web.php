@@ -1,5 +1,8 @@
 <?php
-
+//set use buat masing-masing controler dulu sebelum buat route yg bawah
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\authController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-
 });
 
 // login/logout proses
@@ -57,3 +59,4 @@ Route::get('/data-user', [adminController::class, 'dataUser'])->middleware('auth
 Route::delete('/delete-user/{id}', [adminController::class, 'deleteUser'])->middleware('auth:admin');
 Route::get('/data-user/edit/{id}', [adminController::class, 'editUser'])->middleware('auth:admin');
 Route::put('/data-user/edit/{id}', [adminController::class, 'updateUser'])->middleware('auth:admin');
+
