@@ -6,14 +6,17 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 // logic
 class authController extends Controller
 {
+    //login
     public function login(){
         return view('pages.login');
     }
+    //register
     public function register1(){
         return view('pages.register-1');
     }
@@ -33,6 +36,18 @@ class authController extends Controller
     }
     public function processStep2(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required|digits:16',
+        ],[
+            'nik.required' => 'NIK harus kamu isi',
+            'nik.digits' => 'NIK harus 16 digits',
+        ]);
+
+        if ($validator->fails()) {
+            // Jika validasi gagal, kirim pengguna kembali ke form dengan pesan error
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         // Simpan data ke dalam sesi atau variabel sementara
         session(['nik' => $request->input('nik')]);
         session(['nama_lengkap' => $request->input('nama_lengkap')]);
@@ -51,7 +66,7 @@ class authController extends Controller
         // Validasi input jika diperlukan
         
         $request->validate([
-            'password' => 'confirmed'
+            'password' => 'confirmed',
         ]);
         // session = tempat simpan variabel sementara
 
@@ -75,6 +90,7 @@ class authController extends Controller
         return redirect('/login');      
     }
 
+    //login
      public function cekLogin(Request $request){   
          $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -89,7 +105,8 @@ class authController extends Controller
             return redirect()->intended('/');
         } 
         return redirect()->back()->with('error', 'Proses login gagal.');
-    }   
+    }
+    //logout   
     public function Logout(Request $request){
         Auth::logout();
  
