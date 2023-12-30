@@ -1,4 +1,4 @@
- @extends('layout.login')
+@extends('layout.login')
   @section('content')
  <div class="logo-space d-flex align-items-center justify-content-center">
         <img src="{{url('asset/front-end/image/logo-perusahaan.jpg')}}" alt="logo-perusahaan" width="130" height="48">
@@ -11,6 +11,11 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">NIK</label>
                 <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nik" required placeholder="masukan NIK...">
+                @if ($errors->has('nik'))
+                <div class="alert alert-danger">
+                    {{$errors->first('nik')}}
+                </div>
+                @endif
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
