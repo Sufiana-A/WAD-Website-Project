@@ -57,11 +57,31 @@ class adminController extends Controller
         }
     }
     //lihat daftar pembayaran
-    
+    public function daftar_pembayaran(){
+        $daftar_pembayaran = Payment::all();
+        return view('pages.admin.status_pembayaran', compact(['daftar_pembayaran']));
+    }
     //lihat detail pembayaran dari user
-    
+    public function detail_pembayaran($id){
+        $detail_pembayaran = Payment::find($id);
+        return view('pages.admin.detail_pembayaran', compact(['detail_pembayaran']));
+    }
     //update status pembayaran
-    
+    public function update_payment(Request $request, $id){
+        $update_payment = Payment::find($id);
+        $update_payment->update([
+            'status_pembayaran' => $request->status_pembayaran,
+        ]);
+        if($update_payment){
+            Session::flash('status', 'success');
+            Session::flash('message', 'Status pembayaran berhasil diupdate');
+            return redirect('/daftar-pembayaran');
+        } else{
+            Session::flash('status', 'failed');
+            Session::flash('message', 'Status pembayaran gagal diupdate');
+            return redirect('/daftar-pembayaran');
+        }
+    }
     //lihat data user
     public function dataUser(){
         $dataUser = User::all();
