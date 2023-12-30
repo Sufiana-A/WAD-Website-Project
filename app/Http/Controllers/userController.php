@@ -79,7 +79,47 @@ class userController extends Controller
         } 
     }
     //fitur pembayaran
-    
+     public function pembayaran($id){
+        $pembayaran = Reservation::find($id);
+        return view('pages.pembayaran', compact(['pembayaran']));
+    }
+    public function payment(Request $request, $id){
+        $payment = Reservation::find($id);
+        $bukti_pembayaran = $request->file('bukti_pembayaran')->clientExtension();
+        $fileBuktiPembayaran = auth()->guard('web')->user()->nama_lengkap.'-'.now()->timestamp.'-'.'bukti pembayaran'.'.'.$bukti_pembayaran;
+        $request->file('bukti_pembayaran')->storeAs('images', $fileBuktiPembayaran);
+        $request['bukti_pembayaran'] = $fileBuktiPembayaran;
+        $create_payments = Payment::create([
+            'id_reservation' => $payment->id,
+            'bukti_pembayaran' => $fileBuktiPembayaran,
+            'status_pembayaran' => 'pending'
+        ]);
+        if($create_payments){
+            Session::flash('status', 'success');
+            Session::flash('message', 'Pemmbayaran berhasil di upload');
+            return redirect('/my-order');
+        } else {
+            Session::flash('status', 'failed');
+            Session::flash('message', 'Pembayaran gagal di upload');
+            return redirect('/my-order');
+        }
+    }
+
+    //fitur batalin pembayaran
+    public function deletePembayaran($id){
+        $deletePemesanan = Payment::find($id);
+        $deletePemesanan->delete();
+        if($deletePemesanan){
+            Session::flash('status', 'success');
+            Session::flash('message', 'pembayaran berhasil dibatalkan');
+            return redirect('/my-order');
+        } else{
+            Session::flash('status', 'failed');
+            Session::flash('message', 'pembayaran gagal dibatalkan');
+            return redirect('/my-order');
+        }
+    }
+
     //dari payment sama reservasi
     public function tiket($id){
         $tiket = Payment::find($id);
