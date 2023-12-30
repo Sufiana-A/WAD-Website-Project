@@ -29,9 +29,9 @@
                 </div>
               </div>
               <div class="form-group row mb-4">
-                <label for="fullName" class="col-sm-12 col-md-4 col-form-label">Lokasi hotel</label>
+                <label for="fullName" class="col-sm-12 col-md-4 col-form-label">Nama hotel - Lokasi</label>
                 <div class="col-sm-12 col-md-8">
-                  <input type="text" class="form-control" id="fullName" placeholder="masukan destinasi tujuan..." name="destinasi_hotel" required>
+                  <input type="text" class="form-control" id="fullName" placeholder="Misalnya Royal Hotel - Semarang" name="destinasi_hotel" required>
                 </div>
               </div>
               <div class="form-group row mb-4">
