@@ -44,9 +44,34 @@ class userController extends Controller
     }
 
     //nampilin reservasi-pesawat dalam pages
-    
+    public function reservasi_pesawat(){
+        // return view(folder.folder.nama file)
+        // nama file
+        return view('pages.reservasi-pesawat');
+    }
     
     //ngambil isisn form ke db buat reservasi pesawat
+    public function plane_reservations(Request $request){
+        $plane_reservations = Reservation::create([
+            'nama_lengkap' => $request->nama_lengkap,
+            'email' => $request->email,
+            'layanan' => $request->layanan,
+            'keberangkatan' => $request->keberangkatan,
+            'destinasi_hotel' => $request->destinasi_hotel,
+            'keberangkatan_checkin' => $request->keberangkatan_checkin,
+            'kepulangan_checkout' => $request->kepulangan_checkout,
+            'quantity' => $request->quantity,
+            'booking_code' => 0000,
+            'duduk_kamar' => '',
+            'biaya' => null,
+            'status' => 'menunggu konfirmasi admin'
+        ]);
+        if($plane_reservations){
+            Session::flash('status', 'success');
+            Session::flash('message', 'reservasi kamu berhasil ditambahkan, mohon menunggu konfirmasi dari admin');
+            return redirect('/my-order');
+        } 
+    }
     
     //nampilin reservasi-kereta dlm pages
     
